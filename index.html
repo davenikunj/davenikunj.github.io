@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nikunj Dave — iOS & Flutter Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#FAF7F2;
+  --cream2:#F2EDE4;
+  --cream3:#E8DFD0;
+  --ink:#1A1612;
+  --ink2:#3D3529;
+  --muted:#8C7D6A;
+  --border:#D9D0C2;
+  --orange:#E8631A;
+  --orange-light:#FBE9DC;
+  --teal:#0F7C6E;
+  --teal-light:#DDF2EE;
+  --card:#FFFFFF;
+}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:'Outfit',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 6%;background:rgba(250,247,242,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--ink);letter-spacing:-0.02em}
+.logo em{color:var(--orange);font-style:italic}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.85rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{background:var(--ink);color:var(--cream);padding:0.55rem 1.4rem;border-radius:100px;text-decoration:none;font-size:0.82rem;font-weight:600;letter-spacing:0.02em;transition:background 0.2s}
+.nav-cta:hover{background:var(--orange)}
+
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4rem;padding:8rem 6% 5rem;max-width:1200px;margin:0 auto}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--teal-light);color:var(--teal);border-radius:100px;padding:0.4rem 1rem;font-size:0.78rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:1.75rem}
+.dot-live{width:7px;height:7px;background:var(--teal);border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,5.5vw,5rem);font-weight:900;line-height:1.03;letter-spacing:-0.03em;margin-bottom:1.5rem;color:var(--ink)}
+h1 .italic{font-style:italic;color:var(--orange)}
+.hero-desc{font-size:1.05rem;color:var(--muted);max-width:440px;font-weight:300;line-height:1.8;margin-bottom:2.5rem}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-dark{background:var(--ink);color:var(--cream);padding:0.9rem 2.2rem;border-radius:100px;text-decoration:none;font-weight:600;font-size:0.9rem;transition:background 0.2s,transform 0.2s}
+.btn-dark:hover{background:var(--orange);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--border);padding:0.9rem 2.2rem;border-radius:100px;text-decoration:none;font-weight:600;font-size:0.9rem;transition:border-color 0.2s,transform 0.2s}
+.btn-outline:hover{border-color:var(--ink);transform:translateY(-2px)}
+
+.hero-right{display:flex;flex-direction:column;gap:1.25rem}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:1.75rem;display:flex;flex-direction:column;gap:4px}
+.stat-card.accent{background:var(--ink);border-color:var(--ink)}
+.stat-card.accent .stat-n{color:var(--cream)}
+.stat-card.accent .stat-l{color:rgba(250,247,242,0.5)}
+.stat-n{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;color:var(--ink);line-height:1}
+.stat-l{font-size:0.8rem;color:var(--muted);font-weight:500;letter-spacing:0.06em;text-transform:uppercase;margin-top:4px}
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+
+.divider{border:none;border-top:1px solid var(--border);margin:0 6%}
+.section{padding:5rem 6%;max-width:1200px;margin:0 auto}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem;gap:2rem;flex-wrap:wrap}
+.section-label{font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--orange);margin-bottom:0.5rem}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,2.8rem);font-weight:900;letter-spacing:-0.025em;color:var(--ink);line-height:1.1}
+.section-desc{color:var(--muted);font-size:0.95rem;max-width:380px;font-weight:300;text-align:right;line-height:1.7}
+
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem}
+.skill-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.75rem;transition:border-color 0.25s,transform 0.25s}
+.skill-card:hover{border-color:var(--orange);transform:translateY(-3px)}
+.skill-icon-wrap{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:1rem}
+.icon-orange{background:var(--orange-light)}
+.icon-teal{background:var(--teal-light)}
+.icon-ink{background:var(--ink)}
+.icon-cream{background:var(--cream2)}
+.skill-name{font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;color:var(--ink);margin-bottom:0.75rem}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{background:var(--cream2);color:var(--ink2);border-radius:6px;padding:4px 10px;font-size:0.76rem;font-weight:500}
+.tag-teal{background:var(--teal-light);color:var(--teal)}
+.tag-orange{background:var(--orange-light);color:var(--orange)}
+
+.exp-timeline{display:flex;flex-direction:column}
+.exp-item{display:grid;grid-template-columns:180px 1fr;gap:0 3rem;padding:2.5rem 0;border-bottom:1px solid var(--border)}
+.exp-item:last-child{border-bottom:none}
+.exp-period{font-size:0.82rem;font-weight:600;letter-spacing:0.05em;color:var(--muted);text-transform:uppercase;padding-top:4px}
+.exp-badge{display:inline-block;background:var(--orange-light);color:var(--orange);font-size:0.7rem;font-weight:600;padding:3px 10px;border-radius:100px;margin-top:8px;letter-spacing:0.04em}
+.exp-role{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--ink);margin-bottom:4px}
+.exp-company{color:var(--teal);font-weight:600;font-size:0.92rem;margin-bottom:1rem}
+.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:6px}
+.exp-bullets li{color:var(--muted);font-size:0.9rem;font-weight:300;padding-left:1rem;position:relative}
+.exp-bullets li::before{content:'—';position:absolute;left:0;color:var(--orange)}
+
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem}
+.proj-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:1.75rem;display:flex;flex-direction:column;gap:0.75rem;transition:border-color 0.25s,transform 0.25s}
+.proj-card:hover{border-color:var(--ink);transform:translateY(-4px)}
+.proj-top{display:flex;align-items:center;justify-content:space-between}
+.proj-platform{font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border-radius:100px}
+.plat-ios{background:var(--cream2);color:var(--ink2)}
+.plat-flutter{background:var(--teal-light);color:var(--teal)}
+.proj-link{font-size:0.78rem;color:var(--orange);text-decoration:none;font-weight:600}
+.proj-link:hover{text-decoration:underline}
+.proj-name{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--ink)}
+.proj-desc{color:var(--muted);font-size:0.85rem;font-weight:300;line-height:1.65;flex:1}
+.proj-footer{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
+.edu-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.75rem;transition:border-color 0.25s}
+.edu-card:hover{border-color:var(--orange)}
+.edu-year{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:900;color:var(--cream3);line-height:1;margin-bottom:0.75rem}
+.edu-degree{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:4px}
+.edu-school{color:var(--muted);font-size:0.85rem;font-weight:300}
+
+.contact-section{background:var(--ink);border-radius:24px;padding:4rem;margin:0 6% 5rem;text-align:center}
+.contact-section .section-label{color:var(--orange)}
+.contact-section .section-title{color:var(--cream);margin-bottom:1rem}
+.contact-section p{color:rgba(250,247,242,0.55);font-size:1rem;font-weight:300;max-width:450px;margin:0 auto 2.5rem}
+.contact-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.c-link{background:rgba(250,247,242,0.07);color:var(--cream);border:1px solid rgba(250,247,242,0.12);text-decoration:none;padding:0.75rem 1.6rem;border-radius:100px;font-size:0.85rem;font-weight:500;display:inline-flex;align-items:center;gap:8px;transition:background 0.2s,transform 0.2s}
+.c-link:hover{background:var(--orange);border-color:var(--orange);transform:translateY(-2px)}
+.c-icon{width:14px;height:14px;flex-shrink:0}
+
+footer{text-align:center;padding:2rem 6%;color:var(--muted);font-size:0.8rem;border-top:1px solid var(--border)}
+
+@media(max-width:860px){
+  .hero{grid-template-columns:1fr;padding-top:7rem}
+  .hero-right{grid-template-columns:1fr 1fr;display:grid;gap:1rem}
+  .stat-card.accent{grid-column:1/-1}
+  .exp-item{grid-template-columns:1fr}
+  .exp-period{margin-bottom:0.5rem}
+  .nav-links{display:none}
+  .contact-section{padding:2.5rem 1.5rem;border-radius:16px}
+  .section-head{flex-direction:column}
+  .section-desc{text-align:left}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Nikunj<em>.</em></div>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:nikunjdave62@gmail.com" class="nav-cta">Hire Me</a>
+</nav>
+
+<div class="hero">
+  <div>
+    <div class="hero-eyebrow"><span class="dot-live"></span>Available for projects</div>
+    <h1>iOS &amp; Flutter<br><span class="italic">Developer</span></h1>
+    <p class="hero-desc">4+ years crafting high-quality mobile apps — from concept to App Store. Specialising in Swift, SwiftUI, and Flutter across diverse domains.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-dark">View Projects</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stat-card accent">
+      <div class="stat-n">4+</div>
+      <div class="stat-l">Years of Experience</div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-n">10+</div>
+        <div class="stat-l">Apps Shipped</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n">2</div>
+        <div class="stat-l">Platforms</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-n" style="font-size:1.2rem;color:var(--teal);font-family:'Outfit',sans-serif;font-weight:600">Swift · SwiftUI · Dart · Flutter</div>
+      <div class="stat-l">Core Technologies</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="section" id="skills">
+  <div class="section-head">
+    <div>
+      <div class="section-label">Expertise</div>
+      <h2 class="section-title">Technical Skills</h2>
+    </div>
+    <p class="section-desc">A focused toolkit built shipping real-world mobile products.</p>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon-wrap icon-orange">📱</div>
+      <div class="skill-name">Languages & Frameworks</div>
+      <div class="tags"><span class="tag tag-orange">Swift</span><span class="tag tag-orange">SwiftUI</span><span class="tag tag-orange">UIKit</span><span class="tag tag-orange">Dart</span><span class="tag tag-orange">Flutter</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon-wrap icon-teal">🏗️</div>
+      <div class="skill-name">Architecture & Data</div>
+      <div class="tags"><span class="tag tag-teal">MVVM</span><span class="tag tag-teal">MVC</span><span class="tag tag-teal">REST APIs</span><span class="tag tag-teal">Firebase</span><span class="tag tag-teal">CoreData</span><span class="tag tag-teal">SQLite</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon-wrap icon-ink" style="color:#FAF7F2">🚀</div>
+      <div class="skill-name">Dev & Deployment</div>
+      <div class="tags"><span class="tag">Xcode</span><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">GitLab</span><span class="tag">Bitbucket</span><span class="tag">App Store</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon-wrap icon-cream">💳</div>
+      <div class="skill-name">Integrations</div>
+      <div class="tags"><span class="tag">Razorpay</span><span class="tag">Stripe</span><span class="tag">KNET</span><span class="tag">GraphQL</span><span class="tag">VideoCipher</span><span class="tag">Monri</span></div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="section" id="experience">
+  <div class="section-head">
+    <div>
+      <div class="section-label">Career</div>
+      <h2 class="section-title">Work Experience</h2>
+    </div>
+    <p class="section-desc">From junior developer to leading iOS projects for multiple clients.</p>
+  </div>
+  <div class="exp-timeline">
+    <div class="exp-item">
+      <div>
+        <div class="exp-period">2022 – Present</div>
+        <div class="exp-badge">Current Role</div>
+      </div>
+      <div>
+        <div class="exp-role">iOS Developer</div>
+        <div class="exp-company">MSP IT Concepts Pvt. Ltd.</div>
+        <ul class="exp-bullets">
+          <li>Lead iOS development using Swift, UIKit, and SwiftUI for multiple client applications.</li>
+          <li>Designed MVVM and MVC architectures for scalable, maintainable codebases.</li>
+          <li>Integrated REST APIs, Firebase, Razorpay, and third-party SDKs.</li>
+          <li>Published and maintained apps on the Apple App Store; handled provisioning and releases.</li>
+          <li>Expanded into Flutter, delivering cross-platform apps to both App Store and Play Store.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div>
+        <div class="exp-period">2020 – 2022</div>
+      </div>
+      <div>
+        <div class="exp-role">Jr. iOS Developer</div>
+        <div class="exp-company">MTechnolab Software Solutions</div>
+        <ul class="exp-bullets">
+          <li>Built and shipped iOS applications using Swift and UIKit under senior mentorship.</li>
+          <li>Developed features including user authentication, media playback, and CoreData offline access.</li>
+          <li>Collaborated with design and backend teams for pixel-perfect, API-driven experiences.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="section" id="projects">
+  <div class="section-head">
+    <div>
+      <div class="section-label">Portfolio</div>
+      <h2 class="section-title">Key Projects</h2>
+    </div>
+    <p class="section-desc">Shipped across e-commerce, media, spirituality, education, and more.</p>
+  </div>
+  <div class="projects-grid">
+    <div class="proj-card">
+      <div class="proj-top"><span class="proj-platform plat-flutter">Flutter</span><a href="#" class="proj-link">App Store ↗</a></div>
+      <div class="proj-name">Shree Narayani Gold (SNG)</div>
+      <div class="proj-desc">Jewellery e-commerce app for exploring premium gold collections and connecting with sellers. Live on both App Store and Play Store.</div>
+      <div class="proj-footer"><span class="tag tag-teal">Flutter</span><span class="tag">e-commerce</span></div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-top"><span class="proj-platform plat-ios">iOS</span><a href="#" class="proj-link">App Store ↗</a></div>
+      <div class="proj-name">Mazzal</div>
+      <div class="proj-desc">Secure global marketplace for watch traders with integrated chat, buyer/seller verification, invoicing, and shipment tracking.</div>
+      <div class="proj-footer"><span class="tag tag-orange">SwiftUI</span><span class="tag">marketplace</span></div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-top"><span class="proj-platform plat-ios">iOS</span><a href="#" class="proj-link">App Store ↗</a></div>
+      <div class="proj-name">LifeGurukul</div>
+      <div class="proj-desc">EdTech platform delivering personal development content via VideoCipher, Vimeo, YouTube with Razorpay payments and PDF viewer.</div>
+      <div class="proj-footer"><span class="tag tag-orange">Swift</span><span class="tag">Razorpay</span><span class="tag">EdTech</span></div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-top"><span class="proj-platform plat-ios">iOS</span><a href="#" class="proj-link">App Store ↗</a></div>
+      <div class="proj-name">Jain Tirth Yatra Seva</div>
+      <div class="proj-desc">Spiritual travel platform covering 4,000+ Jain Tirths with search by location or deity, yatra planning, route details, and nearby temples.</div>
+      <div class="proj-footer"><span class="tag">CoreData</span><span class="tag">Spiritual</span></div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-top"><span class="proj-platform plat-ios">iOS</span><a href="#" class="proj-link">App Store ↗</a></div>
+      <div class="proj-name">FantasyWorld Toys</div>
+      <div class="proj-desc">E-commerce app for Kuwait's leading toy retailer built with GraphQL and KNET payment gateway for a full in-app shopping experience.</div>
+      <div class="proj-footer"><span class="tag">GraphQL</span><span class="tag">KNET</span></div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-top"><span class="proj-platform plat-ios">iOS</span><a href="#" class="proj-link">App Store ↗</a></div>
+      <div class="proj-name">Radio Haugland Live</div>
+      <div class="proj-desc">Live radio streaming app for local broadcasts — news, music, and traffic — with seamless audio streaming and native device integration.</div>
+      <div class="proj-footer"><span class="tag">UIKit</span><span class="tag">Streaming</span></div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-top"><span class="proj-platform plat-ios">iOS</span><a href="#" class="proj-link">App Store ↗</a></div>
+      <div class="proj-name">ShootIt AI</div>
+      <div class="proj-desc">Business productivity app for capturing, background-removing, and uploading vehicle photos — streamlining automotive photo workflows.</div>
+      <div class="proj-footer"><span class="tag tag-orange">AI / ML</span><span class="tag">Productivity</span></div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-top"><span class="proj-platform plat-ios">iOS</span><a href="#" class="proj-link">App Store ↗</a></div>
+      <div class="proj-name">Geology 365</div>
+      <div class="proj-desc">Mineral collection manager with specimen tracking, photo documentation, offline CoreData access, and searchable records.</div>
+      <div class="proj-footer"><span class="tag">CoreData</span><span class="tag">Offline</span></div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-top"><span class="proj-platform plat-ios">iOS</span><a href="#" class="proj-link">App Store ↗</a></div>
+      <div class="proj-name">HairBnds Salon</div>
+      <div class="proj-desc">Salon booking app with time-slot scheduling, hairstyle selection, and a modern service catalog interface.</div>
+      <div class="proj-footer"><span class="tag">UIKit</span><span class="tag">Booking</span></div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-top"><span class="proj-platform plat-ios">iOS</span><a href="#" class="proj-link">App Store ↗</a></div>
+      <div class="proj-name">iPrizeWheel HD</div>
+      <div class="proj-desc">Customisable digital spin-wheel for interactive promotions, user engagement campaigns, and live event management.</div>
+      <div class="proj-footer"><span class="tag tag-orange">SwiftUI</span><span class="tag">Engagement</span></div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="section" id="education">
+  <div class="section-head">
+    <div>
+      <div class="section-label">Background</div>
+      <h2 class="section-title">Education</h2>
+    </div>
+    <p class="section-desc">Computer science foundations from Rajkot, Gujarat.</p>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-year">2020</div>
+      <div class="edu-degree">Bachelor of Computer Applications (BCA)</div>
+      <div class="edu-school">Atmiya University, Rajkot</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">2017</div>
+      <div class="edu-degree">Higher Secondary Certificate (HSC)</div>
+      <div class="edu-school">Kendriya Vidyalaya Steel Plant</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">2015</div>
+      <div class="edu-degree">Secondary School Certificate (SSC)</div>
+      <div class="edu-school">Kendriya Vidyalaya Steel Plant</div>
+    </div>
+  </div>
+</div>
+
+<div id="contact">
+  <div class="contact-section">
+    <div class="section-label">Let's Connect</div>
+    <h2 class="section-title" style="font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);letter-spacing:-0.025em;color:var(--cream);margin-bottom:1rem">Have a project in mind?</h2>
+    <p>Open to freelance opportunities and full-time roles. Let's build something great together.</p>
+    <div class="contact-links">
+      <a href="mailto:nikunjdave62@gmail.com" class="c-link">
+        <svg class="c-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="14" height="10" rx="2"/><path d="M1 5l7 5 7-5"/></svg>
+        nikunjdave62@gmail.com
+      </a>
+      <a href="tel:+917698793308" class="c-link">
+        <svg class="c-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 2h3l1.5 4-2 1.5a10 10 0 004 4L11 9.5l4 1.5V14a2 2 0 01-2 2A14 14 0 012 4a2 2 0 012-2z"/></svg>
+        +91 76987 93308
+      </a>
+      <a href="https://linkedin.com/in/nikunjdave62" target="_blank" class="c-link">
+        <svg class="c-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 01.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>
+        linkedin.com/in/nikunjdave62
+      </a>
+      <a href="#" class="c-link">📍 Rajkot, Gujarat</a>
+    </div>
+  </div>
+</div>
+
+<footer>© 2025 Nikunj Dave &nbsp;·&nbsp; iOS & Flutter Developer &nbsp;·&nbsp; Rajkot, Gujarat</footer>
+
+</body>
+</html>
